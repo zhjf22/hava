@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HAVI自动部署平台</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-select.css">
+    <link href="../static/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet"/>
+    <script src="../static/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../static/bootstrap-table/src/locale/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="../static/js/i18n/defaults-zh_CN.min.js"></script>
+    <script type="text/javascript" src="../static/js/mission.js"></script>
+
+</head>
+
+<body>
+<h1> HAVI自动部署平台</h1>
+<h2>提交成功</h2>
+
+<h3> 任务id {{ id }}</h3>
+<a href="http://127.0.0.1:8000/select_log/">查看日志</a>
+<p>  {{ hava_node }}</p>
+<p> {{ hava_config }}</p>
+<p> {{ hava_user_group }}</p>
+
+</body>
+</html>

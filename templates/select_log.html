@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HAVA日志查询</title>
+</head>
+
+<body>
+<a href="http://127.0.0.1:8000/index/">新增任务</a>
+
+<form action="/select_log/" method="get">
+    日志ID : <input type="text" name="log_id">
+    <button name="submit">查询</button>
+</form>
+
+<table id="log_info" cellpadding="1" cellspacing="0" border="1">
+    <caption align="top">日志查询</caption>
+    <thead>
+    <tr>
+        <th>日志ID</th>
+        <th>日志名称</th>
+        <th>运行进度</th>
+        <th>状态</th>
+        <th>创建时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for line in loginfo %}
+        <tr>
+            <td>{{ line.log_id }}</td>
+            <td>{{ line.hava_submit_log_name }}</td>
+            <td>{{ line.step }}</td>
+            <td>{{ line.states }}</td>
+            <td>{{ line.gmt_create }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+</body>
+</html>
