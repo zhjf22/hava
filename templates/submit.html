@@ -17,14 +17,16 @@
 </head>
 
 <body>
-<h1> HAVI自动部署平台</h1>
-<h2>提交成功</h2>
-
-<h3> 任务id {{ id }}</h3>
-<a href="http://127.0.0.1:8000/select_log/">查看日志</a>
-<p>  {{ hava_node }}</p>
-<p> {{ hava_config }}</p>
-<p> {{ hava_user_group }}</p>
+<div align="center">
+    <h1> HAVI自动部署平台</h1>
+    <h2> 运维维护人员</h2>
+    <h2>提交成功</h2>
+    <h3> 任务id {{ id }}</h3>
+    <a href="http://127.0.0.1:8000/select_log/?log_id={{ id }}">查看运行状态</a>
+    <p> {{ hava_node }}</p>
+    <p> {{ hava_config }}</p>
+    <p> {{ hava_user_group }}</p>
+</div>
 
 </body>
 </html>

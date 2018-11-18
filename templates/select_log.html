@@ -28,7 +28,7 @@
     {% for line in loginfo %}
         <tr>
             <td>{{ line.log_id }}</td>
-            <td>{{ line.hava_submit_log_name }}</td>
+            <td> <a href="http://127.0.0.1:8000/show_log?log_name={{ line.hava_submit_log_name }}&log_id={{ line.log_id }} " target="_blank">{{ line.hava_submit_log_name }}</a> </td>
             <td>{{ line.step }}</td>
             <td>{{ line.states }}</td>
             <td>{{ line.gmt_create }}</td>

@@ -16,3 +16,42 @@
 [Errno 2] No such file
 /tmp/node_conf_10.121.143.1_云1_7.log
 [Errno 2] No such file
+{'id': 12, 'log_id': 13, 'log_context': '', 'hava_submit_log_name': 'node_conf_10.121.143.1_云1_13.log', 'hava_submit_log_pid': "b'11992\\n'", 'states': 'run', 'step': '0', 'gmt_create': datetime.datetime(2018, 11, 16, 4, 19, 49, 826600, tzinfo=<UTC>)}
+{'id': 13, 'log_id': 14, 'log_context': '', 'hava_submit_log_name': 'node_conf_10.121.143.1_云1_14.log', 'hava_submit_log_pid': "b'12071\\n'", 'states': 'run', 'step': '0', 'gmt_create': datetime.datetime(2018, 11, 16, 4, 27, 12, 63565, tzinfo=<UTC>)}
+{'id': 14, 'log_id': 15, 'log_context': '', 'hava_submit_log_name': 'node_conf_10.121.143.1_云1_15.log', 'hava_submit_log_pid': "b'12141\\n'", 'states': 'run', 'step': '0', 'gmt_create': datetime.datetime(2018, 11, 16, 4, 33, 14, 181511, tzinfo=<UTC>)}
+run 0.00%
+run 42.86%
+run 42.86%
+success 100%
+success 100%
+run 57.14%
+run 57.14%
+run 57.14%
+run 0.00%
+run 42.86%
+run 42.86%
+run 71.43%
+run 57.14%
+run 57.14%
+run 0.00%
+run 42.86%
+run 42.86%
+success 100%
+run 85.71%
+run 57.14%
+run 0.00%
+run 42.86%
+run 42.86%
+success 100%
+success 100%
+run 0.00%
+run 42.86%
+run 42.86%
+run 57.14%
+run 57.14%
+run 57.14%
+run 57.14%
+run 57.14%
+run 57.14%
+run 57.14%
+run 57.14%

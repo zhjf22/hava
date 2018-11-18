@@ -13,12 +13,24 @@
     <script type="text/javascript" src="../static/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="../static/js/i18n/defaults-zh_CN.min.js"></script>
     <script type="text/javascript" src="../static/js/mission.js"></script>
+
+    <script>
+        function hava_submit() {
+            $.ajax("index/submit/", {
+                type: "POST",
+                dataType: "json"
+            }).done(function (obj) {
+                    var result = obj.result;
+                    if (result == "fail") {
+                        alert(obj.context);
+                    }
+                }
+            )
+        }
+
+    </script>
+
 </head>
-
-<script>
-
-</script>
-
 
 <body>
 {##}
@@ -86,7 +98,9 @@
 {#</div>#}
 
 <div align="center">
-    <form action="/index/submit/" method="post">
+    <h1> HAVI自动部署平台</h1>
+    <h2> 运维维护人员</h2>
+    <form action="/index/submit/" method="post" id='hava_submit'>
         <fieldset>
             <legend>HAVA平台:</legend>
             IP :<input type="text" name="ip"><br>
@@ -94,7 +108,7 @@
             密码 :<input type="text" name="password"><br>
             HAVA服务器: <select class="selectpicker" data-style="btn-primary btn-sm" id="hava_node" name="hava_node">#}
             <option value="10.121.143.1">10.121.143.1</option>
-            <option value="10.121.105.75">10.121.105.75</option>
+            <option value="10.121.105.73">10.121.105.73</option>
         </select> <br>
             HAVA特殊环境: <select class="selectpicker" data-style="btn-primary btn-sm" id="hava_config"
                               name="hava_config">#}
@@ -102,6 +116,7 @@
             <option value="云2">云2</option>
             <option value="云3">云3</option>
             <option value="云4">云4</option>
+            <option value="云5">云5</option>
         </select><br>
             HAVA用户组 :<select class="selectpicker" data-style="btn-primary btn-sm" id="hava_user_group"
                              name="hava_user_group">#}
@@ -110,7 +125,7 @@
             <option value="PM">PM</option>
         </select><br>
             提交：
-            <button type="submit">提交</button>
+            <button type="submit" onclick="hava_submit()">提交</button>
         </fieldset>
     </form>
 

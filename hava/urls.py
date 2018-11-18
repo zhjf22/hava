@@ -20,7 +20,8 @@ from havaApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.index),
-    path('index/submit/',views.index_submit),
+    path('index/submit/', views.index_submit),
     path('submit/', views.index_submit),
-    path('select_log/',views.select_log),
+    path('select_log/', views.select_log),
+    path('show_log/', views.show_log),
 ]
