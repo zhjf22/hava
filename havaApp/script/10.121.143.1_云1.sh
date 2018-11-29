@@ -2,22 +2,19 @@
 
 
 echo "____step01____"
-sleep 5s
 
 echo "____step02____"
-sleep 5s
 
 echo "____step03____"
-sleep 5s
 
 echo "____step04____"
-sleep 600s
+sleep 1s
 
 echo "____step05____"
-sleep 5s
+sleep 1s
 
 echo "____step06____"
-sleep 5s
+sleep 1s
 
-sleep 5s
+sleep 1s
 echo "____step10____"

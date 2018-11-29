@@ -19,3 +19,9 @@ class LogInfo(models.Model):
     states = models.CharField(max_length=50,default='')
     step = models.CharField(max_length=10,default='')
     gmt_create = models.DateTimeField(auto_now=True)
+
+
+class Device(models.Model):
+    host_name = models.CharField(primary_key=True,max_length=100)
+    states = models.CharField(max_length=50)
+    hava_user_group = models.CharField(max_length=100)

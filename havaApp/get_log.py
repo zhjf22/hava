@@ -1,5 +1,5 @@
 from havaApp.utils.ssh_connect import SshConnect
-from havaApp.models import SubmitInfo, LogInfo
+from havaApp.models import SubmitInfo, LogInfo, Device
 import os
 import re
 
@@ -44,6 +44,7 @@ def get_log_states(si_id='0'):
 
     if not run:
         return
+
     for run_item in run:
         if run_item.get('states') == 'success':
             pass
@@ -57,5 +58,14 @@ def get_log_states(si_id='0'):
             except Exception as e:
                 print(e.__str__())
             states, step = scan_log(localpath)
+            if states == 'success':
+                #更新逻辑
+                host_name = "huawei_1234"
+                hava_user_group = SubmitInfo.objects.get(id = si_id).hava_user_group
+                device_data = {"states":states,"hava_user_group":hava_user_group}
+                Device.objects.update_or_create(host_name=host_name ,defaults=device_data)
+                # Device.objects.filter(host_name=host_name).update(states=states)
+
             data = {'states': states, 'step': step}
             LogInfo.objects.filter(log_id=si_id).update(**data)
+

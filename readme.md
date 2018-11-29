@@ -18,3 +18,6 @@ https://www.jianshu.com/p/f6e80e6125cc
 
 ## 增加脚本
 * 脚本目录：havaApp/script
+
+## 上传
+git 

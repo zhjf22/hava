@@ -57,7 +57,7 @@ def index_submit(req):
     hava_submit_log_name = 'node_conf_{}_{}.log'.format(node_conf_key, si.id)
 
     #上传脚本到服务器
-    conn = ssh_connect.SshConnect(si.ip, 22, si.user, si.password)
+    # conn = ssh_connect.SshConnect(si.ip, 22, si.user, si.password)
     localpath = os.path.join(os.path.join(os.path.dirname(__file__),'script') ,node_conf_value)
     remotepath = os.path.join('/tmp',node_conf_value)
 

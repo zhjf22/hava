@@ -14,88 +14,11 @@
     <script type="text/javascript" src="../static/js/i18n/defaults-zh_CN.min.js"></script>
     <script type="text/javascript" src="../static/js/mission.js"></script>
 
-    <script>
-        function hava_submit() {
-            $.ajax("index/submit/", {
-                type: "POST",
-                dataType: "json"
-            }).done(function (obj) {
-                    var result = obj.result;
-                    if (result == "fail") {
-                        alert(obj.context);
-                    }
-                }
-            )
-        }
-
-    </script>
 
 </head>
 
 <body>
-{##}
-{#<div align="center">#}
-{#    <div><h1> HAVA自动部署平台</h1></div>#}
-{##}
-{#    <form class="form-horizontal" role="form" method="post" action="/submit/">{% csrf_token %}#}
-{#        <div class="form-group">#}
-{#            <label for="ip" class="col-sm-2 control-label">IP</label>#}
-{#            <div class="col-sm-10">#}
-{#                <input type="text" class="form-control" id="ip" placeholder="请输入ip">#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="form-group">#}
-{#            <label for="user" class="col-sm-2 control-label">用户名</label>#}
-{#            <div class="col-sm-10">#}
-{#                <input type="text" class="form-control" id="user" placeholder="请输入用户名">#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="form-group">#}
-{#            <label for="passwd" class="col-sm-2 control-label">密码</label>#}
-{#            <div class="col-sm-10">#}
-{#                <input type="text" class="form-control" id="passwd" placeholder="请输入密码">#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <div class="form-group">#}
-{#            <label for="hava_node" class="col-sm-2 control-label">HAVA服务器</label>#}
-{#            <div class="col-sm-9">#}
-{#                <select class="selectpicker" data-style="btn-primary btn-sm" id="hava_node">#}
-{#                    <option value="1">10.121.143.1</option>#}
-{#                    <option value="2">10.121.105.75</option>#}
-{#                </select>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <div class="form-group">#}
-{#            <label for="hava_config" class="col-sm-2 control-label">HAVA特殊环境</label>#}
-{#            <div class="col-sm-9">#}
-{#                <select class="selectpicker" data-style="btn-primary btn-sm" id="hava_config">#}
-{#                    <option value="1">云</option>#}
-{#                    <option value="2">本地</option>#}
-{#                </select>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <div class="form-group">#}
-{#            <label for="hava_user_group" class="col-sm-2 control-label">HAVA用户组</label>#}
-{#            <div class="col-sm-9">#}
-{#                <select class="selectpicker" data-style="btn-primary btn-sm" id="hava_user_group">#}
-{#                    <option value="1">测试</option>#}
-{#                    <option value="2">研发</option>#}
-{#                    <option value="3">PM</option>#}
-{#                </select>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <div class="form-group">#}
-{#            <div class="col-sm-offset-2 col-sm-10">#}
-{#                <button type="submit" class="btn btn-default">提交</button>#}
-{#            </div>#}
-{#        </div>#}
-{#    </form>#}
-{##}
-{#</div>#}
+
 
 <div align="center">
     <h1> HAVI自动部署平台</h1>
@@ -106,20 +29,20 @@
             IP :<input type="text" name="ip"><br>
             用户名 :<input type="text" name="user"><br>
             密码 :<input type="text" name="password"><br>
-            HAVA服务器: <select class="selectpicker" data-style="btn-primary btn-sm" id="hava_node" name="hava_node">#}
+            HAVA服务器: <select onChange="change()"
+                             id="hava_node" name="hava_node" class="bootstrap-select" data-style="btn-primary">
             <option value="10.121.143.1">10.121.143.1</option>
             <option value="10.121.105.73">10.121.105.73</option>
         </select> <br>
-            HAVA特殊环境: <select class="selectpicker" data-style="btn-primary btn-sm" id="hava_config"
-                              name="hava_config">#}
-            <option value="云1">云1</option>
-            <option value="云2">云2</option>
-            <option value="云3">云3</option>
-            <option value="云4">云4</option>
-            <option value="云5">云5</option>
+            HAVA特殊环境: <select id="hava_config"
+                              name="hava_config" class="bootstrap-select" data-style="btn-primary">
+            <option value="本地1">本地1</option>
+            <option value="本地2">本地2</option>
+            <option value="本地3">本地3</option>
+            <option value="本地4">本地4</option>
         </select><br>
-            HAVA用户组 :<select class="selectpicker" data-style="btn-primary btn-sm" id="hava_user_group"
-                             name="hava_user_group">#}
+            HAVA用户组 :<select class="bootstrap-select" data-style="btn-primary" id="hava_user_group"
+                             name="hava_user_group">
             <option value="测试">测试</option>
             <option value="研发">研发</option>
             <option value="PM">PM</option>
@@ -130,6 +53,34 @@
     </form>
 
 </div>
+
+
+<script>
+
+    {#$('.hava_node').selectpicker('val', '1').trigger("change");#}
+
+    function change() {
+        var x = document.getElementById("hava_node");
+        var y = document.getElementById("hava_config");
+        y.options.length = 0; // 清除second下拉框的所有内容
+        if (x.selectedIndex == 0) {
+            y.options.add(new Option("本地1", "0", false, true));
+            y.options.add(new Option("本地2", "1"));
+            y.options.add(new Option("本地3", "2"));
+            y.options.add(new Option("本地4", "3"));
+
+        }
+
+        if (x.selectedIndex == 1) {
+            y.options.add(new Option("云1", "0", false, true));
+            y.options.add(new Option("云2", "1"));
+            y.options.add(new Option("云3", "2"));
+            y.options.add(new Option("云4", "3"));
+        }
+
+    }
+</script>
+
 
 </body>
 </html>
