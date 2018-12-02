@@ -9,23 +9,42 @@ from havaApp.models import SubmitInfo, LogInfo
 from havaApp.utils import ssh_connect
 from havaApp.get_log import get_log_states
 import os
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
 
 def index(req):
-    context = {
-        "result": "success",
-        "hava_node": ["10.121.143.1", "10.121.105.73"],
-        "hava_user_group": ["测试", "研发", "PM"],
-        "hava_config": ["云1", "云1","云3","云4"]
-    }
 
-    return render(req, 'index.html', context=context)
+    ip = req.GET.get('ip')
+    page = req.GET.get('page')
+
+    if ip:
+        get_log_states(ip)
+        contact_list = LogInfo.objects.filter(ip=ip).order_by('-log_id')
+    else:
+        #刷新主页，更新所有状态为run的日志
+        get_log_states()
+        contact_list = LogInfo.objects.all().order_by('-log_id')
+
+    paginator = Paginator(contact_list, 15)  # Show 25 contacts per page
+
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)
+    print(contacts)
+    return render(req, 'index.html',  {"contacts": contacts})
 
 
 @csrf_exempt
 def index_submit(req):
     node_conf = {
-        '10.121.143.1_云1': '10.121.143.1_云1.sh',
-        '10.121.143.1_云2': '',
+        '10.121.143.1_本地1': '10.121.143.1_本地1.sh',
+        '10.121.143.1_本地2': '10.121.143.1_本地2.sh',
         '10.121.143.1_云3': '',
         '10.121.143.1_云4': '',
         '10.121.105.75_云1': '',
@@ -37,17 +56,17 @@ def index_submit(req):
     data = req.POST
     print(data)
 
-    if data.get("user") == '' or data.get("password") == '' or data.get("ip") == '':
-        return JsonResponse({"result": "fail", "context": "IP或用户名或密码为空"})
-
     #判定账号密码是否正确
     try:
         conn = ssh_connect.SshConnect(data.get("ip"), 22, data.get("user"), data.get("password"))
     except Exception as e :
         return JsonResponse({"result": "fail", "context": "请输入正确的账号密码", 'e':e.__str__()})
 
+    #获取hostname
+    host_name = conn.exec_command('hostname')
     si_data = {k: v for k, v in data.items() if
                k in ['ip', 'user', 'password', 'hava_node', 'hava_user_group', 'hava_config']}
+    si_data['host_name'] = host_name
 
     si = SubmitInfo(**si_data)
     si.save()
@@ -57,44 +76,38 @@ def index_submit(req):
     hava_submit_log_name = 'node_conf_{}_{}.log'.format(node_conf_key, si.id)
 
     #上传脚本到服务器
-    # conn = ssh_connect.SshConnect(si.ip, 22, si.user, si.password)
     localpath = os.path.join(os.path.join(os.path.dirname(__file__),'script') ,node_conf_value)
     remotepath = os.path.join('/tmp',node_conf_value)
+    tmp_hava_submit_log = os.path.join('/tmp',hava_submit_log_name)
 
-    cmd = 'nohup sh {} > /tmp/{} 2>&1 & echo $! '.format(remotepath, hava_submit_log_name)
+    cmd = 'nohup sh {} > {} 2>&1 & echo $! '.format(remotepath,tmp_hava_submit_log)
     print(cmd)
-    #上传脚本
-    conn.put(localpath,remotepath)
+
+    # 上传脚本
+    conn.put(localpath, remotepath)
     #执行命令并获取命令pid
     hava_submit_log_pid = conn.exec_command(cmd)
     conn.close()
 
     si_data['id'] = si.id
-
-    log_info_data = {'log_id': si.id, 'hava_submit_log_name': hava_submit_log_name,
+    log_info_data = {'host_name':host_name,'ip':data.get("ip"), 'log_id': si.id, 'hava_submit_log_name': hava_submit_log_name,
                      'hava_submit_log_pid': hava_submit_log_pid ,'states':'run','step':'0'}
 
     LogInfo.objects.create(**log_info_data)
 
-    return render(req, 'submit.html', context=si_data)
+    context = '''任务提交成功
+    日志ID : {}
+    ip: {} 
+    host_name: {}'''.format(si_data.get('id') ,si_data.get('ip'),si_data.get('host_name'))
+
+    return JsonResponse({"result": "success", "context": context})
 
 
-def select_log(req):
-    log_id = req.GET.get('log_id')
-
-    if log_id:
-        get_log_states(log_id)
-        context = LogInfo.objects.filter(log_id=log_id)
-    else:
-        context = LogInfo.objects.all().order_by('-id')
-
-    return render(req, 'select_log.html', {"loginfo": context})
-
-
+#展示日志
 def show_log(req):
-    log_id = req.GET.get('log_id')
     log_name = (req.GET.get('log_name'))
-    get_log_states(log_id)
+    ip = req.GET.get('ip')
+    get_log_states(ip)
     localpath = os.path.join(os.path.join(os.path.dirname(__file__), 'log_states'), log_name)
     with open(localpath,'r') as f:
         lines = f.readlines()

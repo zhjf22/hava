@@ -102,7 +102,7 @@ cronjobs_log = os.path.join(BASE_DIR,'havaApp/log_states/cronjobs.log')
 
 CRONJOBS = [
     # 表示执行每N分钟执行一次
-    ('*/2 * * * *', 'havaApp.get_log.get_log_states','>> {}'.format(cronjobs_log) ),
+    ('*/1 * * * *', 'havaApp.get_log.get_log_states','>> {}'.format(cronjobs_log) ),
 ]
 
 # LANGUAGE_CODE = 'en-us'

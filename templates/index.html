@@ -23,62 +23,168 @@
 <div align="center">
     <h1> HAVI自动部署平台</h1>
     <h2> 运维维护人员</h2>
-    <form action="/index/submit/" method="post" id='hava_submit'>
+    <form  action="/submit/" method="post" onsubmit="return havaSubmit()">
         <fieldset>
             <legend>HAVA平台:</legend>
-            IP :<input type="text" name="ip"><br>
-            用户名 :<input type="text" name="user"><br>
-            密码 :<input type="text" name="password"><br>
+            IP :<input type="text" id="ip" name="ip">
+            用户名 :<input type="text" id="user" name="user">
+            密码 :<input type="text" id="password" name="password"><br><br>
             HAVA服务器: <select onChange="change()"
                              id="hava_node" name="hava_node" class="bootstrap-select" data-style="btn-primary">
             <option value="10.121.143.1">10.121.143.1</option>
             <option value="10.121.105.73">10.121.105.73</option>
-        </select> <br>
+        </select>
             HAVA特殊环境: <select id="hava_config"
                               name="hava_config" class="bootstrap-select" data-style="btn-primary">
             <option value="本地1">本地1</option>
             <option value="本地2">本地2</option>
             <option value="本地3">本地3</option>
             <option value="本地4">本地4</option>
-        </select><br>
+        </select>
             HAVA用户组 :<select class="bootstrap-select" data-style="btn-primary" id="hava_user_group"
                              name="hava_user_group">
             <option value="测试">测试</option>
             <option value="研发">研发</option>
             <option value="PM">PM</option>
-        </select><br>
-            提交：
-            <button type="submit" onclick="hava_submit()">提交</button>
+        </select><br><br>
+            <button type="submit" id="submit" value="提交">提交</button>
+            <button type="reset">清除</button>
         </fieldset>
+        <br> <br>
     </form>
 
 </div>
 
 
-<script>
+<div align="center">
+    <form action="/index/" method="get">
+        IP ：<input type="text" name="ip">
+        <button name="submit">查询</button>
+    </form>
 
-    {#$('.hava_node').selectpicker('val', '1').trigger("change");#}
+    <table id="log_info" cellpadding="1" cellspacing="0" border="1">
+        <caption align="top">日志查询</caption>
+        <thead>
+        <tr>
+            <th>日志ID</th>
+            <th>IP</th>
+            <th>hostname</th>
+            <th>日志名称</th>
+            <th>运行进度</th>
+            <th>状态</th>
+            <th>创建时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for line in contacts %}
+            <tr>
+                <td>{{ line.log_id }}</td>
+                <td>{{ line.ip }}</td>
+                <td>{{ line.host_name }}</td>
+                <td>
+                    <a href="http://127.0.0.1:8000/show_log?log_name={{ line.hava_submit_log_name }}&ip={{ line.ip }} "
+                       target="_blank">{{ line.hava_submit_log_name }}</a></td>
+                <td>{{ line.step }}</td>
+                <td>{{ line.states }}</td>
+                <td>{{ line.gmt_create }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            当前第 {{ contacts.number }}页 ，共 {{ contacts.paginator.num_pages }}页
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">下一页</a>
+        {% endif %}
+    </span>
+    </div>
+</div>
+
+<script>
 
     function change() {
         var x = document.getElementById("hava_node");
         var y = document.getElementById("hava_config");
         y.options.length = 0; // 清除second下拉框的所有内容
         if (x.selectedIndex == 0) {
-            y.options.add(new Option("本地1", "0", false, true));
-            y.options.add(new Option("本地2", "1"));
-            y.options.add(new Option("本地3", "2"));
-            y.options.add(new Option("本地4", "3"));
+            y.options.add(new Option("本地1", "本地1"));
+            y.options.add(new Option("本地2", "本地2"));
+            y.options.add(new Option("本地3", "本地3"));
+            y.options.add(new Option("本地4", "本地4"));
 
         }
 
         if (x.selectedIndex == 1) {
-            y.options.add(new Option("云1", "0", false, true));
-            y.options.add(new Option("云2", "1"));
-            y.options.add(new Option("云3", "2"));
-            y.options.add(new Option("云4", "3"));
+            y.options.add(new Option("云1", "云1"));
+            y.options.add(new Option("云2", "云2"));
+            y.options.add(new Option("云3", "云3"));
+            y.options.add(new Option("云4", "云4"));
         }
 
     }
+
+    function havaSubmit() {
+        var ip = document.getElementById("ip").value;
+        var user = document.getElementById("user").value;
+        var password = document.getElementById("password").value;
+        var hava_node = document.getElementById("hava_node").value;
+        var hava_user_group = document.getElementById("hava_user_group").value;
+        var hava_config = document.getElementById("hava_config").value;
+
+        var message = '';
+
+        var submit_data = {
+            'ip': ip
+            , 'user': user
+            , 'password': password
+            , 'hava_node': hava_node
+            , 'hava_user_group': hava_user_group
+            , 'hava_config': hava_config
+        };
+
+
+        if (ip.length == 0) {
+            message += '请输入IP;';
+        }
+        if (user.length == 0) {
+            message += '请输入用户名;';
+        }
+        if (password.length == 0) {
+            message += '请输入密码;';
+        }
+        if (message != '') {
+            alert(message);
+            return false
+        }
+
+        $.post('/submit/', submit_data,
+            function (res) {
+                if (res.result == 'fail'){
+                    alert(res.context);
+                    window.location.href='http://127.0.0.1:8000/index/'
+                }
+                else {
+                    alert(res.context);
+                    window.location.href='http://127.0.0.1:8000/index/'
+                }
+
+            });
+
+        return false;
+
+    }
+
+
 </script>
 
 

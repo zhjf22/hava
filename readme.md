@@ -19,5 +19,12 @@ https://www.jianshu.com/p/f6e80e6125cc
 ## 增加脚本
 * 脚本目录：havaApp/script
 
+## python 超级用户
+python manage.py createsuperuser
+账号 ： hava  
+密码： hava
+
 ## 上传
-git 
+git add ./*
+git commit -m ""
+git push

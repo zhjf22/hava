@@ -3,11 +3,23 @@ from havaApp.models import SubmitInfo, LogInfo, Device
 import os
 import re
 
-def get_log_content(si_id, localpath, remotepath):
-    si = SubmitInfo.objects.get(id=si_id)
-    conn = SshConnect(si.ip, 22, si.user, si.password)
+def download_content(conn, localpath, remotepath):
     conn.download(remotepath, localpath)
-    conn.close()
+
+
+def get_log_pid_states(conn,pid):
+    pid = pid.strip()
+    cmd = "ps -p {} | awk '{}' ".format(pid.strip(),'{print $1}')
+    pid_res = conn.exec_command(cmd)
+    pid_num = re.findall('\d+', pid_res)
+
+
+    states = 'run'
+    if not pid_num:
+        states = 'finish'
+
+    return states
+
 
 def scan_log(localpath):
 
@@ -33,12 +45,12 @@ def scan_log(localpath):
     return states, step
 
 
-def get_log_states(si_id='0'):
+def get_log_states(ip='0'):
 
-    if si_id == '0':
+    if ip == '0':
         run = LogInfo.objects.filter(states='run').values()
     else:
-        run = LogInfo.objects.filter(log_id=si_id).values()
+        run = LogInfo.objects.filter(ip=ip,states='run').values()
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -53,19 +65,40 @@ def get_log_states(si_id='0'):
             hava_submit_log_name = run_item.get('hava_submit_log_name')
             localpath =  os.path.join(os.path.join(BASE_DIR,'log_states'),hava_submit_log_name)
             remotepath = '/tmp/{}'.format(hava_submit_log_name)
+            si = SubmitInfo.objects.get(id=si_id)
+            lg = LogInfo.objects.get(log_id=si_id)
+            conn = SshConnect(si.ip, 22, si.user, si.password)
+            pid_states = ''
             try:
-                get_log_content(si_id , localpath, remotepath)
+                #下载日志明细
+                download_content(conn , localpath, remotepath)
+                pid_states =  get_log_pid_states(conn,lg.hava_submit_log_pid)
+
             except Exception as e:
                 print(e.__str__())
+            finally:
+                conn.close()
+
             states, step = scan_log(localpath)
+
+            print(states)
+            if pid_states == 'finish' and states != 'success':
+                states = 'fail'
+
+            print(pid_states)
+            print(states)
+
+            #如果成功，更新数据库
             if states == 'success':
-                #更新逻辑
-                host_name = "huawei_1234"
+                host_name = SubmitInfo.objects.get(id=si_id).host_name
                 hava_user_group = SubmitInfo.objects.get(id = si_id).hava_user_group
+
+                print(si_id)
                 device_data = {"states":states,"hava_user_group":hava_user_group}
+                # LogInfo.objects.filter(log_id=si_id).update(states=states)
                 Device.objects.update_or_create(host_name=host_name ,defaults=device_data)
-                # Device.objects.filter(host_name=host_name).update(states=states)
 
             data = {'states': states, 'step': step}
+            print(data)
             LogInfo.objects.filter(log_id=si_id).update(**data)
 

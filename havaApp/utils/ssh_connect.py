@@ -42,11 +42,9 @@ class SshConnect(object):
         stdin, stdout, stderr = self._client.exec_command(command)
         data = stdout.read()
         if len(data) > 0:
-            print(data.strip())
-            return data
+            return str(data,encoding='utf8')
         err = stderr.read()
         if len(err) > 0:
-            print(err.strip())
             return err
 
     def close(self):
