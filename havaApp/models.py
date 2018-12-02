@@ -30,8 +30,5 @@ class Device(models.Model):
     states = models.CharField(max_length=50)
     hava_user_group = models.CharField(max_length=100)
 
-
-class Record(models.Model):
-    content=models.CharField(max_length=32,db_column='record_content')
-    class Meta:
-        db_table="record_001"
+class HavaUserGroup(models.Model):
+    user_group = models.CharField(max_length=50)

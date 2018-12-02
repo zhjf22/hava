@@ -14,7 +14,6 @@
     <script type="text/javascript" src="../static/js/i18n/defaults-zh_CN.min.js"></script>
     <script type="text/javascript" src="../static/js/mission.js"></script>
 
-
 </head>
 
 <body>
@@ -23,32 +22,27 @@
 <div align="center">
     <h1> HAVI自动部署平台</h1>
     <h2> 运维维护人员</h2>
-    <form  action="/submit/" method="post" onsubmit="return havaSubmit()">
+    <form action="/submit/" method="post" onsubmit="return havaSubmit()">
         <fieldset>
             <legend>HAVA平台:</legend>
             IP :<input type="text" id="ip" name="ip">
             用户名 :<input type="text" id="user" name="user">
             密码 :<input type="text" id="password" name="password"><br><br>
             HAVA服务器: <select onChange="change()"
-                             id="hava_node" name="hava_node" class="bootstrap-select" data-style="btn-primary">
-            <option value="10.121.143.1">10.121.143.1</option>
-            <option value="10.121.105.73">10.121.105.73</option>
+                             id="hava_node" name="hava_node" class="selectpicker" data-live-search="true">
+
         </select>
             HAVA特殊环境: <select id="hava_config"
-                              name="hava_config" class="bootstrap-select" data-style="btn-primary">
-            <option value="本地1">本地1</option>
-            <option value="本地2">本地2</option>
-            <option value="本地3">本地3</option>
-            <option value="本地4">本地4</option>
+                              name="hava_config" class="selectpicker">
         </select>
-            HAVA用户组 :<select class="bootstrap-select" data-style="btn-primary" id="hava_user_group"
+            HAVA用户组 :<select class="selectpicker" id="hava_user_group" data-live-search="true"
                              name="hava_user_group">
-            <option value="测试">测试</option>
-            <option value="研发">研发</option>
-            <option value="PM">PM</option>
+            {% for item_user in hava_user_group %}
+                <option value= {{ item_user }}>{{ item_user }}</option>
+            {% endfor %}
         </select><br><br>
-            <button type="submit" id="submit" value="提交">提交</button>
-            <button type="reset">清除</button>
+            <button type="submit" class="btn-success" id="submit" value="提交">提交</button>
+            <button type="reset" class="btn-default">清除</button>
         </fieldset>
         <br> <br>
     </form>
@@ -58,11 +52,11 @@
 
 <div align="center">
     <form action="/index/" method="get">
-        IP ：<input type="text" name="ip">
+        IP ：<input type="text" name="ip" placeholder="请输入IP">
         <button name="submit">查询</button>
     </form>
 
-    <table id="log_info" cellpadding="1" cellspacing="0" border="1">
+    <table class="table" cellpadding="1" cellspacing="0" border="1">
         <caption align="top">日志查询</caption>
         <thead>
         <tr>
@@ -111,25 +105,35 @@
 </div>
 
 <script>
+    //初始化
+    window.onload = function () {
+        document.getElementById("hava_node").options.length = 0;
+        for (const i in hava_node_conf) {
+            $("#hava_node").append(new Option(i, i));
+        }
+
+        change();
+    };
+
+    let hava_node_conf = {
+        "10.121.143.1": ["本地1", "本地2", "本地3", "本地4"],
+        "10.121.105.73": ["云1", "云2", "云3", "云4"],
+    };
 
     function change() {
-        var x = document.getElementById("hava_node");
-        var y = document.getElementById("hava_config");
-        y.options.length = 0; // 清除second下拉框的所有内容
-        if (x.selectedIndex == 0) {
-            y.options.add(new Option("本地1", "本地1"));
-            y.options.add(new Option("本地2", "本地2"));
-            y.options.add(new Option("本地3", "本地3"));
-            y.options.add(new Option("本地4", "本地4"));
+        //清空选项
+        document.getElementById("hava_config").options.length = 0;
 
+        let hava_node = $("#hava_node").val();
+        data = hava_node_conf[hava_node];
+
+        for (const i in data) {
+            const temp = data[i];
+            $("#hava_config").append(new Option(temp, temp));
         }
 
-        if (x.selectedIndex == 1) {
-            y.options.add(new Option("云1", "云1"));
-            y.options.add(new Option("云2", "云2"));
-            y.options.add(new Option("云3", "云3"));
-            y.options.add(new Option("云4", "云4"));
-        }
+        {#重绘UI#}
+        $('.selectpicker').selectpicker('refresh');
 
     }
 
@@ -169,13 +173,13 @@
 
         $.post('/submit/', submit_data,
             function (res) {
-                if (res.result == 'fail'){
+                if (res.result == 'fail') {
                     alert(res.context);
-                    window.location.href='http://127.0.0.1:8000/index/'
+                    window.location.href = 'http://127.0.0.1:8000/index/'
                 }
                 else {
                     alert(res.context);
-                    window.location.href='http://127.0.0.1:8000/index/'
+                    window.location.href = 'http://127.0.0.1:8000/index/'
                 }
 
             });

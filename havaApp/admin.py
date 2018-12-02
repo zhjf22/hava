@@ -1,5 +1,5 @@
 from django.contrib import admin
-from havaApp.models import LogInfo
+from havaApp.models import LogInfo,HavaUserGroup
 
 # Register your models here.
 
@@ -10,5 +10,11 @@ class LogInfoAdmin(admin.ModelAdmin):
     # 文章列表里显示想要显示的字段
     list_per_page = 50
     ordering = ('-log_id',)
-    # list_display_links = ('log_id', 'title')
-    # 设置哪些字段可以点击进入编辑界面
+    search_fields = ('states',)
+
+
+@admin.register(HavaUserGroup)
+class HavaUserGroupAdmin(admin.ModelAdmin):
+    list_display = ('id','user_group')
+    list_display_links = ('user_group',)
+    ordering = ('-id',)
