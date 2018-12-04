@@ -76,7 +76,7 @@
                 <td>{{ line.ip }}</td>
                 <td>{{ line.host_name }}</td>
                 <td>
-                    <a href="http://127.0.0.1:8000/show_log?log_name={{ line.hava_submit_log_name }}&ip={{ line.ip }} "
+                    <a href="/show_log?log_name={{ line.hava_submit_log_name }}&ip={{ line.ip }} "
                        target="_blank">{{ line.hava_submit_log_name }}</a></td>
                 <td>{{ line.step }}</td>
                 <td>{{ line.states }}</td>
@@ -175,11 +175,12 @@
             function (res) {
                 if (res.result == 'fail') {
                     alert(res.context);
-                    window.location.href = 'http://127.0.0.1:8000/index/'
+                    //跳转至当前页
+                    window.location.href = ''
                 }
                 else {
                     alert(res.context);
-                    window.location.href = 'http://127.0.0.1:8000/index/'
+                    window.location.href = ''
                 }
 
             });
