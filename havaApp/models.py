@@ -11,6 +11,7 @@ class SubmitInfo(models.Model):
     hava_config = models.CharField(max_length=100)
     gmt_create = models.DateTimeField(auto_now=True)
     host_name = models.CharField(max_length=100, default='')
+    approve_states = models.CharField(max_length=50, default='') # wait 等待  reject 拒绝  success 通过
 
 
 class LogInfo(models.Model):
@@ -23,6 +24,7 @@ class LogInfo(models.Model):
     gmt_create = models.DateTimeField(auto_now=True)
     ip = models.CharField(max_length=100, default='')
     host_name = models.CharField(max_length=100, default='')
+    approve_states = models.CharField(max_length=50, default='')
 
 
 class Device(models.Model):

@@ -47,16 +47,7 @@ def index(req):
 
 @csrf_exempt
 def index_submit(req):
-    node_conf = {
-        '10.121.143.1_本地1': '10.121.143.1_本地1.sh',
-        '10.121.143.1_本地2': '10.121.143.1_本地2.sh',
-        '10.121.143.1_云3': '',
-        '10.121.143.1_云4': '',
-        '10.121.105.75_云1': '',
-        '10.121.105.75_云2': '',
-        '10.121.105.75_云3': '',
-        '10.121.105.75_云4': '',
-    }
+
 
     data = req.POST
     print(data)
@@ -77,13 +68,83 @@ def index_submit(req):
     si_data = {k: v for k, v in data.items() if
                k in ['ip', 'user', 'password', 'hava_node', 'hava_user_group', 'hava_config']}
     si_data['host_name'] = host_name
+    si_data['approve_states'] = 'wait'
     si = SubmitInfo(**si_data)
     si.save()
 
+    log_info_data = {'host_name': host_name, 'ip': data.get("ip"), 'log_id': si.id, 'states': 'not_run', 'step': '0','approve_states':'wait' }
+    LogInfo.objects.create(**log_info_data)
+
+    #返回提交成功
+    context = '''任务提交成功
+    日志ID : {}
+    ip: {} 
+    host_name: {}'''.format(si.id, si_data.get('ip'), si_data.get('host_name'))
+
+    return JsonResponse({"result": "success", "context": context})
+
+
+@csrf_exempt
+def approve(req):
+
+    approve_method = req.POST.get('approve_method')
+    approve_list = str(req.POST.get('approve_list')).split(',')
+
+    print(approve_method,approve_list)
+
+    if approve_method == None:
+
+        page = req.GET.get('page')
+        contact_list = SubmitInfo.objects.filter(approve_states='wait').order_by('-id')
+        # contact_list = SubmitInfo.objects.all().order_by('-id')
+
+        paginator = Paginator(contact_list, 15)  # Show 25 contacts per page
+
+        try:
+            contacts = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            contacts = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            contacts = paginator.page(paginator.num_pages)
+
+        # contacts = SubmitInfo.objects.all().order_by('-id')
+        return render(req, 'approve.html', {"contacts": contacts})
+
+    else:
+
+        for id in approve_list:
+            SubmitInfo.objects.filter(id=id).update(approve_states=approve_method)
+            LogInfo.objects.filter(log_id=id).update(approve_states=approve_method)
+
+            if approve_method == 'pass':
+                data = SubmitInfo.objects.get(id=id)
+                submit_job(data)
+
+        context = '''下列日志ID状态更新成功 {} '''.format(approve_list)
+
+        return JsonResponse({"result": "success", "context": context})
+
+
+def submit_job(data):
+    node_conf = {
+        '10.121.143.1_本地1': '10.121.143.1_本地1.sh',
+        '10.121.143.1_本地2': '10.121.143.1_本地2.sh',
+        '10.121.143.1_云3': '',
+        '10.121.143.1_云4': '',
+        '10.121.105.75_云1': '',
+        '10.121.105.75_云2': '',
+        '10.121.105.75_云3': '',
+        '10.121.105.75_云4': '',
+    }
+
+    conn = ssh_connect.SshConnect(data.ip, 22, data.user, data.password)
+
     # 拼接服务器字符串
-    node_conf_key = '{}_{}'.format(data.get('hava_node'), data.get('hava_config'))
+    node_conf_key = '{}_{}'.format(data.hava_node, data.hava_config)
     node_conf_value = node_conf.get(node_conf_key)
-    hava_submit_log_name = 'node_conf_{}_{}.log'.format(node_conf_key, si.id)
+    hava_submit_log_name = 'node_conf_{}_{}.log'.format(node_conf_key, data.id)
     localpath = os.path.join(os.path.join(os.path.dirname(__file__), 'script'), node_conf_value)
     remotepath = os.path.join('/tmp', node_conf_value)
     tmp_hava_submit_log = os.path.join('/tmp', hava_submit_log_name)
@@ -97,18 +158,11 @@ def index_submit(req):
     conn.close()
 
     # 更新LogInfo表
-    log_info_data = {'host_name': host_name, 'ip': data.get("ip"), 'log_id': si.id,
-                     'hava_submit_log_name': hava_submit_log_name,
+    log_info_data = {'hava_submit_log_name': hava_submit_log_name,
                      'hava_submit_log_pid': hava_submit_log_pid, 'states': 'run', 'step': '0'}
-    LogInfo.objects.create(**log_info_data)
 
-    #返回提交成功
-    context = '''任务提交成功
-    日志ID : {}
-    ip: {} 
-    host_name: {}'''.format(log_info_data.get('log_id'), si_data.get('ip'), si_data.get('host_name'))
+    LogInfo.objects.filter(log_id=data.id).update(**log_info_data)
 
-    return JsonResponse({"result": "success", "context": context})
 
 
 # 展示日志

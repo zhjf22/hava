@@ -65,8 +65,9 @@
             <th>hostname</th>
             <th>日志名称</th>
             <th>运行进度</th>
-            <th>状态</th>
+            <th>运行状态</th>
             <th>创建时间</th>
+            <th>审批状态</th>
         </tr>
         </thead>
         <tbody>
@@ -81,6 +82,7 @@
                 <td>{{ line.step }}</td>
                 <td>{{ line.states }}</td>
                 <td>{{ line.gmt_create }}</td>
+                <td>{{ line.approve_states }}</td>
             </tr>
         {% endfor %}
         </tbody>

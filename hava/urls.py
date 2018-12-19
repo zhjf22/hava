@@ -23,4 +23,5 @@ urlpatterns = [
     path('index/', views.index),
     path('submit/', views.index_submit),
     path('show_log/', views.show_log),
+    path('approve/',views.approve)
 ]

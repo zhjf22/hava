@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HAVA审批</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-select.css">
+    <link href="../static/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet"/>
+    <script src="../static/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../static/bootstrap-table/src/locale/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="../static/js/i18n/defaults-zh_CN.min.js"></script>
+    <script type="text/javascript" src="../static/js/mission.js"></script>
+
+
+</head>
+<body>
+
+<div align="center">
+
+    <h2>HAVA审批</h2>
+    <table class="table" cellpadding="1" cellspacing="0" border="1">
+        <caption align="top">审批状态查询</caption>
+        <thead>
+        <tr>
+            <th>选择</th>
+            <th>日志ID</th>
+            <th>用户名</th>
+            <th>IP</th>
+            <th>hostname</th>
+            <th>HAVA服务器</th>
+            <th>HAVA特殊环境</th>
+            <th>HAVA用户组</th>
+            <th>创建时间</th>
+            <th>审批状态</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for line in contacts %}
+            <tr>
+                <td><input name="select_approve" id="select_approve" type="checkbox" value="{{ line.id }}"></td>
+                <td>{{ line.id }}</td>
+                <td>{{ line.user }}</td>
+                <td>{{ line.ip }}</td>
+                <td>{{ line.host_name }}</td>
+                <td>{{ line.hava_node }}</td>
+                <td>{{ line.hava_config }}</td>
+                <td>{{ line.hava_user_group }}</td>
+                <td>{{ line.gmt_create }}</td>
+                <td>{{ line.approve_states }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            当前第 {{ contacts.number }}页 ，共 {{ contacts.paginator.num_pages }}页
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">下一页</a>
+        {% endif %}
+    </span>
+    </div>
+
+    <br>
+    <form action="/approve/" method="post" onsubmit="return approve_submit()">
+        <button name="submit" id='pass' value="pass" onclick="query_click()">通过</button>
+        <button name="submit" id='reject' value="reject">拒绝</button>
+    </form>
+</div>
+
+
+<script>
+
+    approve_states_conf = {'wait': '等待审批', 'pass': '审批通过', 'reject': '审批拒绝'};
+
+    function query_click() {
+        document.getElementById("pass").value = "true";
+    }
+
+
+    function approve_submit() {
+        obj = document.getElementsByName("select_approve");
+        let approve_pass = document.getElementById("pass").value;
+        var approve_method
+        if (approve_pass == 'true') {
+            approve_method = 'pass'
+        } else {
+            approve_method = 'reject'
+        }
+
+        check_val = [];
+        for (k in obj) {
+            if (obj[k].checked)
+                check_val.push(obj[k].value);
+        }
+
+        var submit_data = {
+            'approve_method': approve_method,
+            'approve_list': check_val.toString()
+        };
+
+        $.post('/approve/', submit_data,
+            function (res) {
+                //跳转至当前页
+                alert(res.context);
+                window.location.href = ''
+
+            });
+
+        return false;
+    }
+</script>
+
+
+</body>
+</html>
