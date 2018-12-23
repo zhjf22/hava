@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from havaApp import views
+import django.contrib.auth.views as auth_views ##不要忘记导入这个
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +25,6 @@ urlpatterns = [
     path('index/', views.index),
     path('submit/', views.index_submit),
     path('show_log/', views.show_log),
-    path('approve/',views.approve)
+    path('approve/',views.approve),
+    path('login/', views.login),
 ]

@@ -1,6 +1,6 @@
 #
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -10,6 +10,32 @@ from havaApp.utils import ssh_connect
 from havaApp.get_log import get_log_states
 import os
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
+
+
+@csrf_exempt
+def login(request):
+    if request.method=='POST':
+        username1=request.POST.get('username')
+        pwd=request.POST.get('password')
+        # 如何判断用户名和密码呢
+        # 以下是使用auth模块，去数据库里查询用户信息，验证是否存在
+        user=auth.authenticate(username=username1,password=pwd)
+        # 以下语句，其实还是将以上获得认证的用户ID保存在SESSION中，#用于后面每个页面根据此SESSION里的ID，获取用户信息验证，并给auth中间件使用
+        auth.login(request,user)
+        # 用于以后在调用每个视图函数前，auth中间件会根据每次访问视图前请求所带的SEESION里面的ID，去数据库找用户对像，并将对象保存在request.user属性中
+        # 中间件执行完后，再执行视图函数
+        if user:
+            return redirect('/approve/')
+        else:
+            return redirect('/login/')
+    return render(request,'login.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/login')
 
 
 def index(req):
@@ -84,6 +110,7 @@ def index_submit(req):
     return JsonResponse({"result": "success", "context": context})
 
 
+@login_required
 @csrf_exempt
 def approve(req):
 
