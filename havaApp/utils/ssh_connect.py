@@ -2,6 +2,7 @@
 import paramiko
 import os
 
+
 class SshConnect(object):
     def __init__(self, host, port, username, password):
         self._host = host
@@ -41,11 +42,11 @@ class SshConnect(object):
             self._client._transport = self._transport
         stdin, stdout, stderr = self._client.exec_command(command)
         data = stdout.read()
-        if len(data) > 0:
-            return str(data,encoding='utf8')
+        if len(data) > 1:
+            return str(data, encoding='utf8')
         err = stderr.read()
         if len(err) > 0:
-            return err
+            return str(err, encoding='utf-8')
 
     def close(self):
         if self._transport:
@@ -53,27 +54,26 @@ class SshConnect(object):
         if self._client:
             self._client.close()
 
-
 # if __name__ == "__main__":
 
-    # conn = SSHConnection('120.79.170.12', 22, 'root', '123123aA')
-    # sftp = conn.download('/tmp/node_conf_10.121.143.1_云1_2.log', '../log_states/node_conf_10.121.143.1_云1_2.log')
-    #
-    # conn = SSHConnection('192.168.87.200', 22, 'username', 'password')
-    # localpath = 'hello.txt'
-    # remotepath = '/home/hupeng/WorkSpace/Python/test/hello.txt'
-    # print 'downlaod start'
-    # conn.download(remotepath, localpath)
-    # print 'download end'
-    # print 'put begin'
-    # conn.put(localpath, remotepath)
-    # print 'put end'
-    #
-    # conn.exec_command('whoami')
-    # conn.exec_command('cd WorkSpace/Python/test;pwd')  #cd需要特别处理
-    # conn.exec_command('pwd')
-    # conn.exec_command('tree WorkSpace/Python/test')
-    # conn.exec_command('ls -l')
-    # conn.exec_command('echo "hello python" > python.txt')
-    # conn.exec_command('ls hello')  #显示错误信息
-    # conn.close()
+# conn = SSHConnection('120.79.170.12', 22, 'root', '123123aA')
+# sftp = conn.download('/tmp/node_conf_10.121.143.1_云1_2.log', '../log_states/node_conf_10.121.143.1_云1_2.log')
+#
+# conn = SSHConnection('192.168.87.200', 22, 'username', 'password')
+# localpath = 'hello.txt'
+# remotepath = '/home/hupeng/WorkSpace/Python/test/hello.txt'
+# print 'downlaod start'
+# conn.download(remotepath, localpath)
+# print 'download end'
+# print 'put begin'
+# conn.put(localpath, remotepath)
+# print 'put end'
+#
+# conn.exec_command('whoami')
+# conn.exec_command('cd WorkSpace/Python/test;pwd')  #cd需要特别处理
+# conn.exec_command('pwd')
+# conn.exec_command('tree WorkSpace/Python/test')
+# conn.exec_command('ls -l')
+# conn.exec_command('echo "hello python" > python.txt')
+# conn.exec_command('ls hello')  #显示错误信息
+# conn.close()

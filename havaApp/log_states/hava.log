@@ -1,0 +1,706 @@
+DEBUG 2019-08-17 16:13:08,668 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:13:08,670 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+ERROR 2019-08-17 16:13:11,621 Internal Server Error: /app_exec
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/alx.zjf/PycharmProjects/hava/havaApp/views.py", line 219, in app_exec
+    logger.info(['INFO'] + remopt_path)
+TypeError: can only concatenate list (not "str") to list
+ERROR 2019-08-17 16:13:11,622 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 500 67092
+DEBUG 2019-08-17 16:14:47,133 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:14:47,136 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:14:50,799 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:14:51,125 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:14:51,267 [INFO]script1------
+
+
+INFO 2019-08-17 16:14:51,268 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:14:51,551 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:14:51,712 [INFO]script2------
+
+
+INFO 2019-08-17 16:14:51,712 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:14:52,087 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:14:52,204 [INFO]script3------
+
+
+INFO 2019-08-17 16:14:52,204 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:14:52,550 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:14:52,674 [INFO]script2------
+
+
+INFO 2019-08-17 16:14:52,676 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 224
+INFO 2019-08-17 16:19:19,441 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:19:19,761 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:19:19,861 [INFO]script1------
+
+
+INFO 2019-08-17 16:19:19,862 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:19:20,123 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:19:20,221 [INFO]script2------
+
+
+INFO 2019-08-17 16:19:20,222 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:19:20,485 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:19:20,585 [INFO]
+
+INFO 2019-08-17 16:19:20,586 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:19:20,918 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:19:21,012 [INFO]script2------
+
+
+INFO 2019-08-17 16:19:21,013 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 209
+INFO 2019-08-17 16:20:10,704 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:20:11,153 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:20:11,249 [INFO]script1------
+
+
+INFO 2019-08-17 16:20:11,249 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:20:11,621 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:20:11,716 [INFO]script3------
+
+
+INFO 2019-08-17 16:20:11,716 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:20:11,966 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:20:12,051 [INFO]
+
+INFO 2019-08-17 16:20:12,052 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:20:12,428 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:20:12,563 [INFO]script3------
+
+
+INFO 2019-08-17 16:20:12,565 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 209
+DEBUG 2019-08-17 16:21:45,852 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:21:45,854 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:21:52,434 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:21:54,715 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:21:55,097 [INFO]script1------
+
+
+INFO 2019-08-17 16:21:55,098 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:21:55,956 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:21:56,365 [INFO]script3------
+
+
+INFO 2019-08-17 16:21:56,365 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:21:56,930 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:21:57,103 [INFO]
+
+INFO 2019-08-17 16:21:57,103 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:21:57,561 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:21:57,832 [INFO]script3------
+
+
+INFO 2019-08-17 16:21:57,833 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 209
+DEBUG 2019-08-17 16:22:14,596 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:22:14,599 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:22:21,050 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:22:21,337 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:22:21,439 [INFO]script1------
+
+
+INFO 2019-08-17 16:22:21,440 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:22:21,682 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:22:21,769 [INFO]script3------
+
+
+INFO 2019-08-17 16:22:21,770 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:22:22,090 [INFO]sh /tmp/script2.sh
+ERROR 2019-08-17 16:22:22,281 Internal Server Error: /app_exec
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/alx.zjf/PycharmProjects/hava/havaApp/views.py", line 225, in app_exec
+    logger.info('[INFO]' + ssh_exec)
+TypeError: must be str, not bytes
+ERROR 2019-08-17 16:22:22,282 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 500 67160
+DEBUG 2019-08-17 16:23:15,599 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:23:15,602 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:23:16,995 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:23:17,268 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:23:17,353 [INFO]script1------
+
+
+INFO 2019-08-17 16:23:17,354 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:23:17,588 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:23:17,683 [INFO]script3------
+
+
+INFO 2019-08-17 16:23:17,684 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:23:17,914 [INFO]sh /tmp/script2.sh
+ERROR 2019-08-17 16:23:18,079 Internal Server Error: /app_exec
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/alx.zjf/PycharmProjects/hava/havaApp/views.py", line 225, in app_exec
+    logger.info('[INFO]' + ssh_exec)
+TypeError: must be str, not bytes
+ERROR 2019-08-17 16:23:18,079 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 500 67160
+INFO 2019-08-17 16:23:37,712 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:23:38,000 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:23:38,104 [INFO]script1------
+
+
+INFO 2019-08-17 16:23:38,105 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:23:38,370 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:23:38,460 [INFO]script3------
+
+
+INFO 2019-08-17 16:23:38,460 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:23:38,708 [INFO]sh /tmp/script2.sh
+ERROR 2019-08-17 16:23:38,857 Internal Server Error: /app_exec
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/alx.zjf/PycharmProjects/hava/havaApp/views.py", line 225, in app_exec
+    logger.info('[INFO]' + ssh_exec)
+TypeError: must be str, not bytes
+ERROR 2019-08-17 16:23:38,857 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 500 67160
+DEBUG 2019-08-17 16:24:52,115 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:24:52,117 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2019-08-17 16:24:55,853 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:24:55,855 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:24:56,904 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:24:57,255 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:24:57,362 [INFO]script1------
+
+
+INFO 2019-08-17 16:24:57,362 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:24:57,622 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:24:57,720 [INFO]script3------
+
+
+INFO 2019-08-17 16:24:57,721 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:24:57,981 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:24:58,071 [INFO]/tmp/script2.sh: line 3: ech: command not found
+
+INFO 2019-08-17 16:24:58,072 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:24:58,338 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:24:58,434 [INFO]script3------
+
+
+INFO 2019-08-17 16:24:58,436 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 256
+ERROR 2019-08-17 16:25:08,253 Internal Server Error: /app_exec
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/alx.zjf/PycharmProjects/hava/havaApp/views.py", line 215, in app_exec
+    L = eval(exec_py)
+  File "<string>", line 1, in <module>
+AttributeError: module 'havaApp.pyscript.app' has no attribute 'App3'
+ERROR 2019-08-17 16:25:08,254 "GET /app_exec?id=1&m=2&app_name=App3 HTTP/1.1" 500 68553
+DEBUG 2019-08-17 16:26:11,575 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:26:11,578 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2019-08-17 16:26:22,641 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:26:22,644 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2019-08-17 16:26:26,389 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:26:26,391 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+ERROR 2019-08-17 16:26:27,729 Internal Server Error: /app_exec
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/alx.zjf/PycharmProjects/hava/havaApp/views.py", line 233, in app_exec
+    return JsonResponse({"result": "success", "context": "执行成功", "执行命令": exec_list, 'req': req.GET, 'e': e})
+UnboundLocalError: local variable 'exec_list' referenced before assignment
+ERROR 2019-08-17 16:26:27,730 "GET /app_exec?id=1&m=2&app_name=App3 HTTP/1.1" 500 65260
+DEBUG 2019-08-17 16:26:45,793 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:26:45,795 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+ERROR 2019-08-17 16:26:47,951 Internal Server Error: /app_exec
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/alx.zjf/PycharmProjects/hava/havaApp/views.py", line 234, in app_exec
+    return JsonResponse({"result": "success", "context": "执行成功", "执行命令": exec_list, 'req': req.GET, 'e': e})
+UnboundLocalError: local variable 'e' referenced before assignment
+ERROR 2019-08-17 16:26:47,953 "GET /app_exec?id=1&m=2&app_name=App3 HTTP/1.1" 500 65395
+DEBUG 2019-08-17 16:26:55,889 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:26:55,891 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2019-08-17 16:26:58,537 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:26:58,539 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+ERROR 2019-08-17 16:27:16,082 Internal Server Error: /app_exec
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/alx.zjf/PycharmProjects/hava/havaApp/views.py", line 233, in app_exec
+    return JsonResponse({"result": "success", "context": "执行成功", "执行命令": exec_list, 'req': req.GET, 'e': e})
+UnboundLocalError: local variable 'e' referenced before assignment
+ERROR 2019-08-17 16:27:16,084 "GET /app_exec?id=1&m=2&app_name=App3 HTTP/1.1" 500 65387
+DEBUG 2019-08-17 16:27:39,689 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:27:39,691 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:27:45,776 "GET /app_exec?id=1&m=2&app_name=App3 HTTP/1.1" 200 204
+INFO 2019-08-17 16:28:02,231 "GET /app_exec?id=1&m=2&app_name=App4 HTTP/1.1" 200 204
+DEBUG 2019-08-17 16:40:29,298 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:40:29,301 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2019-08-17 16:42:37,775 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:42:37,777 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:42:53,611 "GET /app_exec?id=1&m=2&app_name=App4 HTTP/1.1" 200 204
+INFO 2019-08-17 16:43:14,159 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:43:14,413 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:43:14,520 [INFO]script1------
+
+
+INFO 2019-08-17 16:43:14,521 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:43:14,816 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:43:14,947 [INFO]script3------
+
+
+INFO 2019-08-17 16:43:14,949 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:43:15,226 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:43:15,310 [INFO]/tmp/script2.sh: line 3: ech: command not found
+
+INFO 2019-08-17 16:43:15,312 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:43:15,568 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:43:15,654 [INFO]script3------
+
+
+INFO 2019-08-17 16:43:15,656 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 265
+DEBUG 2019-08-17 16:44:06,819 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:44:06,821 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:44:22,407 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:44:22,786 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:44:22,868 [INFO]script1------
+
+
+INFO 2019-08-17 16:44:22,870 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:44:23,141 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:44:23,246 [INFO]script3------
+
+
+INFO 2019-08-17 16:44:23,248 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:44:23,514 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:44:23,612 [INFO]/tmp/script2.sh: line 3: ech: command not found
+
+INFO 2019-08-17 16:44:23,616 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:44:23,882 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:44:23,977 [INFO]script3------
+
+
+INFO 2019-08-17 16:44:23,979 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 265
+DEBUG 2019-08-17 16:45:23,582 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:45:23,584 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:45:28,999 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:45:29,493 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:45:29,579 [INFO]script1------
+
+
+INFO 2019-08-17 16:45:29,580 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:45:29,909 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:45:30,048 [INFO]script3------
+
+
+INFO 2019-08-17 16:45:30,050 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:45:30,559 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:45:30,676 [INFO]/tmp/script2.sh: line 3: ech: command not found
+
+INFO 2019-08-17 16:45:30,678 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:45:31,173 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:45:31,669 [INFO]script3------
+
+
+INFO 2019-08-17 16:45:31,671 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 265
+DEBUG 2019-08-17 16:47:30,257 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:47:30,259 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2019-08-17 16:47:38,126 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:47:38,129 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2019-08-17 16:47:42,911 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:47:42,913 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:47:47,800 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:47:48,126 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:47:48,222 [INFO]script1------
+
+
+INFO 2019-08-17 16:47:48,223 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:47:48,491 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:47:48,602 [INFO]script3------
+
+
+INFO 2019-08-17 16:47:48,602 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:47:48,889 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:47:48,993 [INFO]/tmp/script2.sh: line 3: ech: command not found
+
+INFO 2019-08-17 16:47:48,994 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:47:49,270 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:47:49,353 [INFO]script3------
+
+
+INFO 2019-08-17 16:47:49,355 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 265
+INFO 2019-08-17 16:47:57,289 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:47:57,604 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:47:57,758 [INFO]script1------
+
+
+INFO 2019-08-17 16:47:57,759 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:47:58,020 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:47:58,117 [INFO]script3------
+
+
+INFO 2019-08-17 16:47:58,118 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:47:58,357 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:47:58,437 [INFO]/tmp/script2.sh: line 3: ech: command not found
+
+INFO 2019-08-17 16:47:58,438 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:47:58,732 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:47:58,900 [INFO]script3------
+
+
+INFO 2019-08-17 16:47:58,901 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 265
+DEBUG 2019-08-17 16:48:25,193 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:48:25,196 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+INFO 2019-08-17 16:48:27,094 [INFO]/tmp/script1.sh
+INFO 2019-08-17 16:48:27,450 [INFO]sh /tmp/script1.sh
+INFO 2019-08-17 16:48:27,545 [INFO]script1------
+
+
+INFO 2019-08-17 16:48:27,547 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:48:27,833 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:48:27,956 [INFO]script3------
+
+
+INFO 2019-08-17 16:48:27,957 [INFO]/tmp/script2.sh
+INFO 2019-08-17 16:48:29,960 [INFO]sh /tmp/script2.sh
+INFO 2019-08-17 16:48:30,083 [INFO]/tmp/script2.sh: line 3: ech: command not found
+
+INFO 2019-08-17 16:48:30,085 [INFO]/tmp/script3.sh
+INFO 2019-08-17 16:48:31,393 [INFO]sh /tmp/script3.sh
+INFO 2019-08-17 16:48:33,553 [INFO]script3------
+
+
+INFO 2019-08-17 16:48:33,555 "GET /app_exec?id=1&m=2&app_name=App1 HTTP/1.1" 200 265
+DEBUG 2019-08-17 16:48:44,641 (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+DEBUG 2019-08-17 16:48:44,643 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+DEBUG 2019-08-17 17:19:33,087 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 111, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/urls/resolvers.py", line 520, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern ''>], [<URLPattern 'index/'>], [<URLPattern 'submit/'>], [<URLPattern 'show_log/'>], [<URLPattern 'approve/'>], [<URLPattern 'login/'>], [<URLPattern 'app_exec'>]], 'path': 'quotaplan/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+WARNING 2019-08-17 17:19:33,092 Not Found: /quotaplan/
+WARNING 2019-08-17 17:19:33,093 "OPTIONS /quotaplan/ HTTP/1.1" 404 2715
+DEBUG 2019-08-17 17:28:38,357 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 111, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/urls/resolvers.py", line 520, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern ''>], [<URLPattern 'index/'>], [<URLPattern 'submit/'>], [<URLPattern 'show_log/'>], [<URLPattern 'approve/'>], [<URLPattern 'login/'>], [<URLPattern 'app_exec'>]], 'path': 'quotaplan/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+WARNING 2019-08-17 17:28:38,359 Not Found: /quotaplan/
+WARNING 2019-08-17 17:28:38,359 "OPTIONS /quotaplan/ HTTP/1.1" 404 2715
+DEBUG 2019-08-17 17:29:11,022 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 111, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/urls/resolvers.py", line 520, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern ''>], [<URLPattern 'index/'>], [<URLPattern 'submit/'>], [<URLPattern 'show_log/'>], [<URLPattern 'approve/'>], [<URLPattern 'login/'>], [<URLPattern 'app_exec'>]], 'path': 'quotaplan/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+WARNING 2019-08-17 17:29:11,024 Not Found: /quotaplan/
+WARNING 2019-08-17 17:29:11,024 "OPTIONS /quotaplan/ HTTP/1.1" 404 2715
+DEBUG 2019-08-17 17:29:20,203 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 111, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/urls/resolvers.py", line 520, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern ''>], [<URLPattern 'index/'>], [<URLPattern 'submit/'>], [<URLPattern 'show_log/'>], [<URLPattern 'approve/'>], [<URLPattern 'login/'>], [<URLPattern 'app_exec'>]], 'path': 'quotaplan/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+WARNING 2019-08-17 17:29:20,204 Not Found: /quotaplan/
+WARNING 2019-08-17 17:29:20,205 "OPTIONS /quotaplan/ HTTP/1.1" 404 2715
+DEBUG 2019-08-17 17:29:21,191 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 111, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/urls/resolvers.py", line 520, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern ''>], [<URLPattern 'index/'>], [<URLPattern 'submit/'>], [<URLPattern 'show_log/'>], [<URLPattern 'approve/'>], [<URLPattern 'login/'>], [<URLPattern 'app_exec'>]], 'path': 'quotaplan/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+WARNING 2019-08-17 17:29:21,192 Not Found: /quotaplan/
+WARNING 2019-08-17 17:29:21,193 "OPTIONS /quotaplan/ HTTP/1.1" 404 2715
+DEBUG 2019-08-17 23:00:31,216 Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/core/handlers/base.py", line 111, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/urls/resolvers.py", line 520, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern ''>], [<URLPattern 'index/'>], [<URLPattern 'submit/'>], [<URLPattern 'show_log/'>], [<URLPattern 'approve/'>], [<URLPattern 'login/'>], [<URLPattern 'app_exec'>]], 'path': 'quotaplan/'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 829, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 837, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 843, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alx.zjf/.conda/envs/hava/lib/python3.6/site-packages/django/template/base.py", line 850, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+WARNING 2019-08-17 23:00:31,218 Not Found: /quotaplan/
+WARNING 2019-08-17 23:00:31,218 "OPTIONS /quotaplan/ HTTP/1.1" 404 2715

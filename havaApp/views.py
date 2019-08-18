@@ -1,6 +1,6 @@
 #
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -13,25 +13,29 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required
+import logging
+
+logger = logging.getLogger('django')  # 这里的日志记录器要和setting中的loggers选项对应，不能随意给参
 
 
 @csrf_exempt
 def login(request):
-    if request.method=='POST':
-        username1=request.POST.get('username')
-        pwd=request.POST.get('password')
+    if request.method == 'POST':
+        username1 = request.POST.get('username')
+        pwd = request.POST.get('password')
         # 如何判断用户名和密码呢
         # 以下是使用auth模块，去数据库里查询用户信息，验证是否存在
-        user=auth.authenticate(username=username1,password=pwd)
+        user = auth.authenticate(username=username1, password=pwd)
         # 以下语句，其实还是将以上获得认证的用户ID保存在SESSION中，#用于后面每个页面根据此SESSION里的ID，获取用户信息验证，并给auth中间件使用
-        auth.login(request,user)
+        auth.login(request, user)
         # 用于以后在调用每个视图函数前，auth中间件会根据每次访问视图前请求所带的SEESION里面的ID，去数据库找用户对像，并将对象保存在request.user属性中
         # 中间件执行完后，再执行视图函数
         if user:
             return redirect('/approve/')
         else:
             return redirect('/login/')
-    return render(request,'login.html')
+    return render(request, 'login.html')
+
 
 def logout(request):
     auth.logout(request)
@@ -73,8 +77,6 @@ def index(req):
 
 @csrf_exempt
 def index_submit(req):
-
-
     data = req.POST
     print(data)
 
@@ -98,10 +100,11 @@ def index_submit(req):
     si = SubmitInfo(**si_data)
     si.save()
 
-    log_info_data = {'host_name': host_name, 'ip': data.get("ip"), 'log_id': si.id, 'states': 'not_run', 'step': '0','approve_states':'wait' }
+    log_info_data = {'host_name': host_name, 'ip': data.get("ip"), 'log_id': si.id, 'states': 'not_run', 'step': '0',
+                     'approve_states': 'wait'}
     LogInfo.objects.create(**log_info_data)
 
-    #返回提交成功
+    # 返回提交成功
     context = '''任务提交成功
     日志ID : {}
     ip: {} 
@@ -113,11 +116,10 @@ def index_submit(req):
 @login_required
 @csrf_exempt
 def approve(req):
-
     approve_method = req.POST.get('approve_method')
     approve_list = str(req.POST.get('approve_list')).split(',')
 
-    print(approve_method,approve_list)
+    print(approve_method, approve_list)
 
     if approve_method == None:
 
@@ -191,7 +193,6 @@ def submit_job(data):
     LogInfo.objects.filter(log_id=data.id).update(**log_info_data)
 
 
-
 # 展示日志
 def show_log(req):
     log_name = (req.GET.get('log_name'))
@@ -202,3 +203,35 @@ def show_log(req):
         lines = f.readlines()
 
     return render(req, 'show_log.html', {'lines': lines})
+
+
+from havaApp.pyscript import app
+
+
+def app_exec(req):
+    app_name = req.GET.get('app_name')
+    ssh = ssh_connect.SshConnect('47.106.146.248', 22, 'root', '1234qwer!')
+    exec_py = 'app.' + app_name + '().run()'
+    e = ''
+    exec_list = []
+    try:
+        L = eval(exec_py)
+        for l in L:
+            with open('/Users/alx.zjf/PycharmProjects/hava/havaApp/log_states/' + 'hava1.log','a+') as file:
+                remopt_path = '/tmp/' + os.path.basename(l)
+                logger.info('[INFO]' + remopt_path)
+                ssh.put(l, remopt_path)
+                cmd = 'sh {}'.format(remopt_path)
+                logger.info('[INFO]' + cmd)
+                print(cmd)
+                ssh_exec = ssh.exec_command(cmd)
+                logger.info('[INFO]' + ssh_exec)
+                print(ssh_exec)
+                exec_list.append(ssh_exec)
+                file.write(remopt_path+'\n')
+                file.write(cmd+'\n')
+                file.write(ssh_exec+'\n')
+    except Exception as exception:
+        e = str(exception)
+
+    return JsonResponse({"result": "success", "context": "执行成功", "执行命令": exec_list, 'req': req.GET, 'e': e})

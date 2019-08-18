@@ -1,0 +1,31 @@
+/tmp/script3.shsh /tmp/script3.shscript3------
+
+/tmp/script1.sh/nsh /tmp/script1.sh/nscript1------
+
+/tmp/script3.sh/nsh /tmp/script3.sh/nscript3------
+
+/tmp/script2.sh/nsh /tmp/script2.sh/n/tmp/script2.sh: line 3: ech: command not found
+/tmp/script3.sh/nsh /tmp/script3.sh/nscript3------
+
+/tmp/script1.sh/nsh /tmp/script1.sh/nscript1------
+
+/tmp/script3.sh/nsh /tmp/script3.sh/nscript3------
+
+/tmp/script2.sh/nsh /tmp/script2.sh/n/tmp/script2.sh: line 3: ech: command not found
+/tmp/script3.sh/nsh /tmp/script3.sh/nscript3------
+
+/tmp/script1.sh
+sh /tmp/script1.sh
+script1------
+
+/tmp/script3.sh
+sh /tmp/script3.sh
+script3------
+
+/tmp/script2.sh
+sh /tmp/script2.sh
+/tmp/script2.sh: line 3: ech: command not found
+/tmp/script3.sh
+sh /tmp/script3.sh
+script3------
+

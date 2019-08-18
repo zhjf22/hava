@@ -2,6 +2,8 @@ from havaApp.utils.ssh_connect import SshConnect
 from havaApp.models import SubmitInfo, LogInfo, Device
 import os
 import re
+from datetime import datetime
+
 
 def download_content(conn, localpath, remotepath):
     conn.download(remotepath, localpath)
@@ -44,9 +46,9 @@ def scan_log(localpath):
     return states, step
 
 
-def get_log_states(ip):
+def get_log_states(ip=0):
 
-    if ip:
+    if ip != 0:
         run = LogInfo.objects.filter(ip=ip, states='run').values()
     else:
         run = LogInfo.objects.filter(states='run').values()
@@ -60,6 +62,7 @@ def get_log_states(ip):
         if run_item.get('states') == 'success' or run_item.get('states') == 'fail':
             pass
         else:
+            print(datetime.now())
             si_id = run_item.get('log_id')
             hava_submit_log_name = run_item.get('hava_submit_log_name')
             localpath =  os.path.join(os.path.join(BASE_DIR,'log_states'),hava_submit_log_name)

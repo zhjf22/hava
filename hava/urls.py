@@ -27,4 +27,5 @@ urlpatterns = [
     path('show_log/', views.show_log),
     path('approve/',views.approve),
     path('login/', views.login),
+    path('app_exec',views.app_exec)
 ]
